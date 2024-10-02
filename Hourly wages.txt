@@ -1,0 +1,41 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main() {
+    float hoursWorked, hourlyWage, grossPay, taxes, netPay;
+
+    // Get user input
+    cout << "Enter hours worked in a week: ";
+    cin >> hoursWorked;
+    cout << "Enter hourly wage: ";
+    cin >> hourlyWage;
+
+    // Calculate gross pay with overtime
+    if (hoursWorked > 40) {
+        float regularHours = 40;
+        float overtimeHours = hoursWorked - 40;
+        grossPay = (regularHours * hourlyWage) + (overtimeHours * hourlyWage * 1.5);
+    } else {
+        grossPay = hoursWorked * hourlyWage;
+    }
+
+    // Calculate taxes based on the specified rates
+    if (grossPay <= 600) {
+        taxes = grossPay * 0.15;
+    } else {
+        taxes = (600 * 0.15) + ((grossPay - 600) * 0.20);
+    }
+
+    // Calculate net pay
+    netPay = grossPay - taxes;
+
+    // Print the results
+    cout << fixed << setprecision(2);
+    cout << "\nGross Pay: $" << grossPay << endl;
+    cout << "Taxes: $" << taxes << endl;
+    cout << "Net Pay: $" << netPay << endl;
+
+    return 0;
+}
